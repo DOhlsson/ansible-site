@@ -2,9 +2,16 @@
 # TODO:
 # * differentiate between hosts that need to checkout with ssh and https
 
-- name: Checkout dotfiles
+- name: Checkout dotfiles readonly
+  when: "'workstation' not in group_names"
   git:
     repo: https://github.com/DOhlsson/configs.git
+    dest: "{{ansible_user_dir}}/github/configs"
+
+- name: Checkout dotfiles
+  when: "'workstation' in group_names"
+  git:
+    repo: git@github.com:DOhlsson/configs.git
     dest: "{{ansible_user_dir}}/github/configs"
 
 - name: Create directories
