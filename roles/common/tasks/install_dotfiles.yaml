@@ -1,0 +1,20 @@
+---
+- debug:
+    msg: "{{dotfileInfo}}"
+
+- name: Stat dotfile
+  stat:
+    path: "{{ansible_user_dir}}/{{dotfileInfo.install_path}}"
+  register: dotfile_stat
+
+- name: Delete original dotfile
+  when: dotfile_stat.stat.isreg is defined and dotfile_stat.stat.isreg == True
+  file:
+    path: "{{ansible_user_dir}}/{{dotfileInfo.install_path}}"
+    state: absent
+
+- name: Symlink dotfile
+  file:
+    src: "{{ansible_user_dir}}/github/configs/{{dotfileInfo.repo_path}}"
+    dest: "{{ansible_user_dir}}/{{dotfileInfo.install_path}}"
+    state: link

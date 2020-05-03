@@ -1,0 +1,53 @@
+---
+# TODO:
+# * differentiate between hosts that need to checkout with ssh and https
+
+- name: Checkout dotfiles
+  git:
+    repo: https://github.com/DOhlsson/configs.git
+    dest: "{{ansible_user_dir}}/github/configs"
+
+- name: Create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "{{ansible_user_dir}}/.config/i3"
+    - "{{ansible_user_dir}}/.config/i3status"
+    - "{{ansible_user_dir}}/.config/xfce4/terminal"
+    - "{{ansible_user_dir}}/.config/pulse"
+    - "{{ansible_user_dir}}/.vim/autoload"
+
+- include_tasks: install_dotfiles.yaml
+  loop:
+    - repo_path: bash/bashrc
+      install_path: .bashrc
+    - repo_path: bash/inputrc
+      install_path: .inputrc
+    - repo_path: vim/vimrc
+      install_path: .vimrc
+    - repo_path: config/i3/config
+      install_path: .config/i3/config
+    - repo_path: config/i3/i3status.conf
+      install_path: .config/i3status/config
+    - repo_path: config/user-dirs.dirs
+      install_path: .config/user-dirs.dirs
+    - repo_path: config/xfce4/terminal/terminalrc
+      install_path: .config/xfce4/terminal/terminalrc
+    - repo_path: config/pulse/daemon.conf
+      install_path: .config/pulse/daemon.conf
+    - repo_path: misc/profile
+      install_path: .profile
+    - repo_path: misc/xsessionrc
+      install_path: .xsessionrc
+    - repo_path: misc/Xresources
+      install_path: .Xresources
+    - repo_path: misc/xinitrc
+      install_path: .xinitrc
+  loop_control:
+    loop_var: dotfileInfo
+
+- name: Install vim-plug
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: "{{ansible_user_dir}}/.vim/autoload/plug.vim"

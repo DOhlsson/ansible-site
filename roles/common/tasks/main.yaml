@@ -1,0 +1,59 @@
+---
+- name: Deploy sources.list
+  become: yes
+  template:
+    src: sources.list.j2
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: 0644 
+
+- name: Upgrades
+  become: yes
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    upgrade: yes
+
+- name: Install useful tools
+  become: yes
+  apt:
+    state: present
+    name:
+      - bash-completion
+      - bc
+      - command-not-found
+      - curl
+      - dnsutils
+      - fd-find
+      - fzf
+      - git
+      - htop
+      - jq
+      - man-db
+      - molly-guard # prevents accidental shutdown of server
+      - netcat
+      - ntp
+      - pv
+      - ripgrep
+      - screen
+      - strace
+      - sudo
+      - unattended-upgrades
+      - vim
+
+- name: update command-not-found
+  become: yes
+  command: update-command-not-found
+  args:
+    creates: "/var/lib/command-not-found/*"
+
+- name: Process dotfiles
+  include: dotfiles.yaml
+
+- name: Activate Magic SysRq
+  become: yes
+  copy:
+    content: "# enable all sysrq commands\nkernel.sysrq = 1\n"
+    dest: /etc/sysctl.d/99-sysrq.conf
+

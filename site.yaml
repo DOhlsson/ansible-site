@@ -1,0 +1,14 @@
+---
+- name: "Role: common"
+  hosts: all
+  roles:
+    - common
+  tags:
+    - common
+
+- name: "Role: solidus"
+  hosts: solidus
+  roles:
+    - solidus
+  tags:
+    - solidus
