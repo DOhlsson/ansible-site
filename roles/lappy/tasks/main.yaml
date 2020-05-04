@@ -1,0 +1,12 @@
+---
+- name: Copy reverse_ssh unit file
+  copy:
+    src: reverse_ssh.service
+    dest: .config/systemd/user/
+
+- name: Enable reverse_ssh unit
+  systemd:
+    name: reverse_ssh
+    enabled: yes
+    scope: user
+    state: started

@@ -1,0 +1,13 @@
+[Unit]
+Description=SSHFS automount
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/sshfs -f -o reconnect -o Cipher=aes128-ctr -o Compression=no solidus-sshfs:/tank/data data
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

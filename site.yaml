@@ -6,9 +6,23 @@
   tags:
     - common
 
+- name: "Role: workstation"
+  hosts: workstation
+  roles:
+    - workstation
+  tags:
+    - workstation
+
 - name: "Role: solidus"
   hosts: solidus
   roles:
     - solidus
   tags:
     - solidus
+
+- name: "Role: lappy"
+  hosts: lappy
+  roles:
+    - lappy
+  tags:
+    - lappy

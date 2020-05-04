@@ -1,0 +1,25 @@
+---
+- name: Install sshfs
+  become: yes
+  apt:
+    state: present
+    name:
+      - sshfs
+
+- name: Create data directory
+  file:
+    path: ~/data
+    state: directory
+
+- name: Copy sshfs_auto unit file
+  copy:
+    src: sshfs_auto.service
+    dest: .config/systemd/user/
+
+- name: Enable sshfs_auto unit
+  systemd:
+    name: sshfs_auto
+    enabled: yes
+    scope: user
+    state: restarted
+    daemon_reload: yes

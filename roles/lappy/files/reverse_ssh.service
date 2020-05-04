@@ -1,0 +1,11 @@
+[Unit]
+Description=Automatic SSHFS
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ssh -N -o "ExitOnForwardFailure yes" -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -R 2222:localhost:22 solidus
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target
