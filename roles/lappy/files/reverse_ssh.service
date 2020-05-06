@@ -1,11 +1,11 @@
 [Unit]
-Description=Automatic SSHFS
+Description=Reverse SSH
 Wants=network-online.target
 After=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/ssh -N -o "ExitOnForwardFailure yes" -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -R 2222:localhost:22 solidus
+ExecStart=/usr/bin/ssh -N -o ExitOnForwardFailure=yes -o ServerAliveInterval=15 -o ServerAliveCountMax=2 -R 2222:localhost:22 solidus-ext
 Restart=always
 RestartSec=10
 
