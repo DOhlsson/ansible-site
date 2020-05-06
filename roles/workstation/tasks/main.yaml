@@ -11,10 +11,10 @@
     path: ~/data
     state: directory
 
-- name: Copy sshfs_auto unit file
-  copy:
-    src: sshfs_auto.service
-    dest: .config/systemd/user/
+- name: Deploy sshfs_auto unit file
+  template:
+    src: sshfs_auto.service.j2
+    dest: .config/systemd/user/sshfs_auto.service
 
 - name: Enable sshfs_auto unit
   systemd:
