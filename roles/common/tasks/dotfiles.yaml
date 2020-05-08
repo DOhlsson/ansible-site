@@ -1,7 +1,4 @@
 ---
-# TODO:
-# * differentiate between hosts that need to checkout with ssh and https
-
 - name: Checkout dotfiles readonly
   when: "'workstation' not in group_names"
   git:

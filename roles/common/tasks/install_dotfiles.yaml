@@ -1,7 +1,4 @@
 ---
-- debug:
-    msg: "{{dotfileInfo}}"
-
 - name: Stat dotfile
   stat:
     path: "{{ansible_user_dir}}/{{dotfileInfo.install_path}}"
