@@ -1,3 +1,28 @@
 ---
+# TODO create user for data folder
+
 - name: ZFS 
   include: zfs.yaml
+
+- name: Install rsync
+  become: yes
+  apt:
+    state: present
+    name: rsync
+
+# TODO: add ssh_config and solidus keys
+- name: Add trbg backup crontab script
+  copy:
+    src: backup.sh
+    dest: /tank/trbg/backup.sh
+
+- name: Add backup cronjob
+  cron:
+    name: backup_trbg
+    job: "/bin/bash /tank/trbg/backup.sh"
+    state: present
+    minute: "0"
+    hour: "1"
+    day: "*"
+    month: "*"
+    weekday: "*"
