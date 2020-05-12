@@ -23,3 +23,9 @@
     enabled: yes
     scope: user
     state: started
+
+- name: Copy ansible vault pass
+  no_log: yes
+  copy:
+    src: /home/do/.vault_pass
+    dest: /home/do/.vault_pass
