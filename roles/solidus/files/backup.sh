@@ -10,4 +10,4 @@ fi
 
 rsync -rv $checksum_flag --delete pallastv:/mnt/hdd/Data/ ${backup_dir}/data/ > ${backup_dir}/rsync_stdout.log 2> ${backup_dir}/rsync_stderr.log
 
-zfs snapshot tank/trbg@backup-$date
+/sbin/zfs snapshot tank/trbg@backup-$date
