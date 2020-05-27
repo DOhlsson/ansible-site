@@ -1,0 +1,28 @@
+---
+- name: Check for correct zfs setup
+  changed_when: False
+  command: "/sbin/zfs list {{item}}"
+  loop:
+    - tank
+    - tank/data
+    - tank/trbg
+    - tank/vms
+
+- name: Set correct owner for volumes
+  become: yes
+  file:
+    path: "{{item}}"
+    owner: do
+    group: do
+  loop:
+    - /tank/data
+    - /tank/trbg
+    - /tank/vms
+
+- name: Allow user to take snapshots
+  become: yes
+  zfs_delegate_admin:
+    name: tank/trbg
+    state: present
+    users: do
+    permissions: snapshot
