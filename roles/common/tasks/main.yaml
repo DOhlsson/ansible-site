@@ -38,6 +38,7 @@
       - pv
       - ripgrep
       - screen
+      - smartmontools
       - strace
       - sudo
       - unattended-upgrades
