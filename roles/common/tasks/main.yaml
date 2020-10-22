@@ -32,6 +32,7 @@
       - htop
       - jq
       - man-db
+      - mlocate
       - molly-guard # prevents accidental shutdown of server
       - netcat
       - ntp
