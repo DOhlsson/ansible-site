@@ -40,6 +40,8 @@
       install_path: .config/xfce4/terminal/terminalrc
     - repo_path: config/pulse/daemon.conf
       install_path: .config/pulse/daemon.conf
+    - repo_path: misc/npmrc
+      install_path: .npmrc
     - repo_path: misc/profile
       install_path: .profile
     - repo_path: misc/xsessionrc
