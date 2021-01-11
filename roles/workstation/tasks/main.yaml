@@ -1,10 +1,11 @@
 ---
-- name: Install sshfs
+- name: Install workstation tools
   become: yes
   apt:
     state: present
     name:
       - sshfs
+      - smart-notify
 
 - name: Create data directory
   file:

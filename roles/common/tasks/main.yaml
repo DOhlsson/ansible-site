@@ -26,7 +26,7 @@
       - curl
       - dnsutils
       - fd-find
-      - firmware-linux-nonfree
+      - firmware-linux
       - fzf
       - git
       - htop
