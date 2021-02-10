@@ -5,7 +5,7 @@
     state: present
     name:
       - sshfs
-      - smart-notify
+      - smart-notifier
 
 - name: Create data directory
   file:
@@ -30,3 +30,15 @@
   copy:
     src: /home/do/.vault_pass
     dest: /home/do/.vault_pass
+
+- name: Ensure /etc/X11/xorg.conf.d exists
+  become: yes
+  file:
+    path: /etc/X11/xorg.conf.d
+    state: directory
+
+- name: Copy xorg custom settings
+  become: yes
+  copy:
+    src: 90-custom-xkb.conf
+    dest: /etc/X11/xorg.conf.d/90-custom-xkb.conf
