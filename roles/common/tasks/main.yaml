@@ -45,11 +45,22 @@
       - unattended-upgrades
       - vim
 
-- name: update command-not-found
+- name: Update command-not-found
   become: yes
   command: update-command-not-found
   args:
     creates: "/var/lib/command-not-found/*"
+
+- name: Copy ssh keys
+  when: copy_ssh_keys
+  no_log: yes
+  copy:
+    mode: 0600
+    src: "{{ item }}"
+    dest: /home/do/.ssh/
+  loop:
+    - /home/do/.ssh/id_rsa
+    - /home/do/.ssh/id_rsa.pub
 
 - name: Process dotfiles
   include: dotfiles.yaml

@@ -12,6 +12,11 @@
     path: ~/data
     state: directory
 
+- name: Create .config/systemd/user directory
+  file:
+    path: ~/.config/systemd/user
+    state: directory
+
 - name: Deploy sshfs_auto unit file
   template:
     src: sshfs_auto.service.j2

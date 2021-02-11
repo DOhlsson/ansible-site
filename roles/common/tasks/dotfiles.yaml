@@ -1,13 +1,14 @@
 ---
 - name: Checkout dotfiles readonly
-  when: "'workstation' not in group_names"
+  when: not checkout_dotfiles_rw
   git:
     repo: https://github.com/DOhlsson/configs.git
     dest: "{{ansible_user_dir}}/github/configs"
 
-- name: Checkout dotfiles
-  when: "'workstation' in group_names"
+- name: Checkout dotfiles rw
+  when: checkout_dotfiles_rw
   git:
+    accept_hostkey: yes
     repo: git@github.com:DOhlsson/configs.git
     dest: "{{ansible_user_dir}}/github/configs"
 
