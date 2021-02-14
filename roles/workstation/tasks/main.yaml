@@ -4,8 +4,11 @@
   apt:
     state: present
     name:
-      - sshfs
+      - dex
+      - fonts-hack
+      - i3
       - smart-notifier
+      - sshfs
 
 - name: Create data directory
   file:

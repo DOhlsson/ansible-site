@@ -26,6 +26,7 @@
       - curl
       - dnsutils
       - fd-find
+      - firmware-iwlwifi
       - firmware-linux
       - fzf
       - git
