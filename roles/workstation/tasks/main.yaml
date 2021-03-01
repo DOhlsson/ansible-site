@@ -10,6 +10,7 @@
       - smart-notifier
       - sshfs
       - build-essential
+      - ansible
 
 - name: Create data directory
   file:
