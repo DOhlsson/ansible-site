@@ -5,7 +5,7 @@ After=network-online.target
 
 [Service]
 Type=simple
-{% if inventory_hostname == 'lappy' %}
+{% if inventory_hostname == 'lappy' || inventory_hostname == 'worky' %}
 ExecStart=/usr/bin/sshfs -f -o ServerAliveInterval=15 -o ServerAliveCountMax=2 -o reconnect -o Cipher=aes128-ctr -o Compression=no solidus-ext-sshfs:/tank/data data
 {% else %}
 ExecStart=/usr/bin/sshfs -f -o ServerAliveInterval=15 -o ServerAliveCountMax=2 -o reconnect -o Cipher=aes128-ctr -o Compression=no solidus-sshfs:/tank/data data

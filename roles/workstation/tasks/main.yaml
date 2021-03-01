@@ -9,6 +9,7 @@
       - i3
       - smart-notifier
       - sshfs
+      - build-essential
 
 - name: Create data directory
   file:
