@@ -35,6 +35,7 @@
       - man-db
       - mlocate
       - molly-guard # prevents accidental shutdown of server
+      - net-tools
       - netcat
       - ntp
       - pv
@@ -45,7 +46,6 @@
       - sudo
       - unattended-upgrades
       - vim
-      - net-tools
 
 - name: Update command-not-found
   become: yes
