@@ -45,6 +45,7 @@
       - sudo
       - unattended-upgrades
       - vim
+      - net-tools
 
 - name: Update command-not-found
   become: yes
