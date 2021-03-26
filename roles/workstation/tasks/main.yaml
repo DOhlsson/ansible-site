@@ -11,6 +11,7 @@
       - sshfs
       - build-essential
       - ansible
+      - scrot
 
 - name: Create data directory
   file:
