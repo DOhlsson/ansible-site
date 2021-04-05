@@ -31,6 +31,8 @@
       install_path: .inputrc
     - repo_path: vim/vimrc
       install_path: .vimrc
+    - repo_path: vim/coc-settings.json
+      install_path: .vim/coc-settings.json
     - repo_path: config/i3/config
       install_path: .config/i3/config
     - repo_path: config/i3/i3status.conf
