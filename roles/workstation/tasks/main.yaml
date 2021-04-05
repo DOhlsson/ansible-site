@@ -55,7 +55,15 @@
     dest: /etc/X11/xorg.conf.d/90-custom-xkb.conf
 
 - name: Install rustup
-  shell: curl https://sh.rustup.rs -sSf | sh -s -- -y
+  shell:
+    cmd: curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
+    creates: ~/.cargo/bin/rustup
 
 - name: rustup update
   shell: ~/.cargo/bin/rustup update
+
+- name: Download rust-analyzer
+  get_url:
+    url: https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux
+    dest: ~/bin/rust-analyzer
+    mode: a+x
