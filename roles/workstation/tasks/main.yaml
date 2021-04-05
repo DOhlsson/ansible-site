@@ -53,3 +53,9 @@
   copy:
     src: 90-custom-xkb.conf
     dest: /etc/X11/xorg.conf.d/90-custom-xkb.conf
+
+- name: Install rustup
+  shell: curl https://sh.rustup.rs -sSf | sh -s -- -y
+
+- name: rustup update
+  shell: ~/.cargo/bin/rustup update
