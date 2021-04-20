@@ -1,4 +1,11 @@
 ---
+- name: Install laptop specific tools
+  become: yes
+  apt:
+    state: present
+    name:
+      - brightnessctl
+
 - name: Copy reverse_ssh unit file
   copy:
     src: reverse_ssh.service

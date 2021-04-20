@@ -20,9 +20,9 @@
   tags:
     - solidus
 
-- name: "Role: lappy"
-  hosts: lappy
+- name: "Role: laptop"
+  hosts: laptop
   roles:
-    - lappy
+    - laptop
   tags:
-    - lappy
+    - laptop
