@@ -1,2 +1,3 @@
 ---
 ansible_become_pass: "{{ vault_ansible_become_pass }}"
+debian_mirror: http://debian.lth.se/debian/

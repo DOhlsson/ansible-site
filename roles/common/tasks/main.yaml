@@ -72,3 +72,8 @@
   copy:
     content: "# enable all sysrq commands\nkernel.sysrq = 1\n"
     dest: /etc/sysctl.d/99-sysrq.conf
+
+- name: Create bin directory
+  file:
+    path: ~/bin
+    state: directory

@@ -13,10 +13,13 @@
       - ansible
       - scrot
 
-- name: Create data directory
+- name: Create directories
   file:
-    path: ~/data
+    path: "{{ item }}"
     state: directory
+  loop:
+    - data
+    - downloads
 
 - name: Create .config/systemd/user directory
   file:
@@ -56,6 +59,7 @@
 
 - name: Install rustup
   shell:
+    warn: False
     cmd: curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
     creates: ~/.cargo/bin/rustup
 
@@ -63,7 +67,6 @@
   shell: ~/.cargo/bin/rustup update
 
 - name: Download rust-analyzer
-  get_url:
-    url: https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux
-    dest: ~/bin/rust-analyzer
-    mode: a+x
+  shell:
+    warn: False
+    cmd: curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gzip -d > ~/bin/rust-analyzer; chmod +x ~/bin/rust-analyzer
