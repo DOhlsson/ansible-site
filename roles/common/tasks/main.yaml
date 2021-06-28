@@ -73,11 +73,11 @@
     content: "# enable all sysrq commands\nkernel.sysrq = 1\n"
     dest: /etc/sysctl.d/99-sysrq.conf
 
-- name: Increase inotify user watches
+- name: Increase inotify limits
   become: yes
   copy:
-    content: "# Increase inotify user watches\nfs.inotify.max_user_watches = 1048576\n"
-    dest: /etc/sysctl.d/99-sysrq.conf
+    content: "# Increase inotify limits\nfs.inotify.max_user_watches = 1048576\nfs.inotify.max_user_instances = 1024\n"
+    dest: /etc/sysctl.d/99-inotify.conf
 
 - name: Create bin directory
   file:
